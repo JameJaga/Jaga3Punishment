@@ -22,14 +22,14 @@ async def on_message(message):
         await message.channel.send(embed=embed)
     
     #Kickコマンド
-    if message.content.startswith('/jpkick'):
+    elif message.content.startswith('/jpkick'):
         member = message.mentions[0]
         await guild.kick(user=member)
         embed = discord.Embed(title="MemberKicked",description = f'{str(member)}をキックしました。',color=discord.Colour.from_rgb(255, 0, 0))
         await message.channel.send(embed=embed)
         
     #muteコマンド
-    if message.content.startswith('/jpmute'):
+    elif message.content.startswith('/jpmute'):
         member = message.mentions[0]
         role = discord.utils.get(message.guild.roles, name='Muted')
         await member.add_roles(role)
@@ -37,7 +37,7 @@ async def on_message(message):
         await message.channel.send(embed=embed)
         
     #unmuteコマンド
-    if message.content.startwith('/jpunmute'):
+    elif message.content.startwith('/jpunmute'):
         member = message.mentions[0]
         role = discord.utils.get(message.guild.roles, name='Muted')
         await member.remove_roles(role)
@@ -45,11 +45,10 @@ async def on_message(message):
         await message.channel.send(embed=embed)
         
     #banコマンド
-    if message.content.startswith('/jpban'):
+    elif message.content.startswith('/jpban'):
         member = message.mentions[0]
         await guild.ban(user=member)
         embed = discord.Embed(title="MemberBanned",description = f'{str(member)}をBANしました。',color=discord.Colour.from_rgb(255, 0, 0))
         await message.channel.send(embed=embed)
         
 client.run(TOKEN)
-\
