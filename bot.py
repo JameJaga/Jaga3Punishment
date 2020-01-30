@@ -12,6 +12,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    guild = message.guild
     if message.author.bot:
         return
     #Helpコマンド
@@ -23,7 +24,7 @@ async def on_message(message):
     #Kickコマンド
     if message.content.startswith('/jpkick'):
         member = message.mentions[0]
-        await discord.Guild.kick(user=member, *, reason=None)
+        await guild.kick(user=member)
         embed = discord.Embed(title="MemberKicked",description=member + 'をkickしました。',color=discord.Colour.red())
         await message.channel.send(embed=embed)
 client.run(TOKEN)
