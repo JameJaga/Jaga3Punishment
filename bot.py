@@ -50,4 +50,6 @@ async def on_message(message):
         await guild.ban(user=member)
         embed = discord.Embed(title="MemberBanned",description = f'{str(member)}をBANしました。',color=discord.Colour.from_rgb(255, 0, 0))
         await message.channel.send(embed=embed)
+        
 client.run(TOKEN)
+\
