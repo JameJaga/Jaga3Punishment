@@ -18,7 +18,10 @@ async def on_message(message):
         embed.add_field(name="**Perdon**",value="/jpunmute {user}で{user}の発言禁止解除\n/jpperdon {user}で{user}のBAN解除。")
         await message.channel.send(embed=embed)
     
+    #Kickコマンド
     if message.content == '/jpkick':
         user = message.mentions[0].id
         await kick(user, *, reason=None)
+        embed = discord.Embed(title="MemberKicked",description=member + 'をkickしました。',color=discord.Colour.red())
+        await message.channel.send(embed=embed)
 client.run(TOKEN)
