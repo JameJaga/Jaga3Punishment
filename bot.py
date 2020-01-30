@@ -21,9 +21,9 @@ async def on_message(message):
         await message.channel.send(embed=embed)
     
     #Kickコマンド
-    if message.content == '/jpkick':
+    if message.startwith'/jpkick':
         print('Wetgfgkortgkworkgpowrekpgwokgrve logged in as {0.user}'.format(client))
-        member = message.mentions[0].id
+        member = message.mentions[0]
         await kick(user=member, reason=None)
         embed = discord.Embed(title="MemberKicked",description=member + 'をkickしました。',color=discord.Colour.red())
         await message.channel.send(embed=embed)
