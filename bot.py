@@ -32,7 +32,7 @@ async def on_message(message):
     if message.content.startswith('/jpmute'):
         member = message.mentions[0]
         role = discord.utils.get(message.guild.roles, name='Muted')
-        await message.author.add_roles(role)
+        await member.add_roles(role)
         embed = discord.Embed(title="MemberMuted",description = f'{str(member)}をミュートしました。',color=discord.Colour.from_rgb(255, 0, 0))
         await message.channel.send(embed=embed)
         
@@ -40,7 +40,7 @@ async def on_message(message):
     if message.content.startwith('/jpunmute'):
         member = message.mentions[0]
         role = discord.untils.get(message.guild.roles, name='Muted')
-        await message.author.remove_roles(role)
+        await member.remove_roles(role)
         embed = discord.Embed(title="MemberUnmuted",description = f'{str(member)}をミュートを解除しました。',color=discord.Colour.from_rgb(255, 0, 247))
         await message.channel.send(embed=embed)
         
