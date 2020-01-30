@@ -39,9 +39,9 @@ async def on_message(message):
     #unmuteコマンド
     if message.content.startwith('/jpunmute'):
         member = message.mentions[0]
-        role = discord.untils.get(message.guild.roles, name='Muted')
+        role = discord.utils.get(message.guild.roles, name='Muted')
         await member.remove_roles(role)
-        embed = discord.Embed(title="MemberUnmuted",description = f'{str(member)}をミュートを解除しました。',color=discord.Colour.from_rgb(255, 0, 247))
+        embed = discord.Embed(title="MemberUnmuted",description = f'{str(member)}のミュートを解除しました。',color=discord.Colour.from_rgb(255, 0, 247))
         await message.channel.send(embed=embed)
         
     #banコマンド
