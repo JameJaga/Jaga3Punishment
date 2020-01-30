@@ -25,7 +25,7 @@ async def on_message(message):
     if message.content.startswith('/jpkick'):
         member = message.mentions[0]
         await guild.kick(user=member)
-        embed = discord.Embed(title="MemberKicked",description = f'{str(VoiceC_count)}をキックしました。',color=discord.Colour.red())
+        embed = discord.Embed(title="MemberKicked",description = f'{str(member)}をキックしました。',color=discord.Colour.red())
         channel = client.get_channel(663570894521761846)
         await message.channel.send(embed=embed)
 client.run(TOKEN)
