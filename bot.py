@@ -14,6 +14,7 @@ async def on_ready():
 async def on_message(message):
     channel = client.get_channel(663570894521761846)
     guild = message.guild
+    Ban_count = len(guild.bans)
     if message.author.bot:
         return
     #Helpコマンド
@@ -52,5 +53,15 @@ async def on_message(message):
         embed = discord.Embed(title="MemberBanned",description = f'{str(member)}をBANしました。',color=discord.Colour.from_rgb(255, 0, 0))
         await message.channel.send(embed=embed)
         await channel.send(embed=embed)
-        
+    #処罰中の人数を表示する。
+    #これBANの表示
+    ChannelName = f'BANNED:{str(Ban_count)}'
+    VoiceChannel = client.get_channel(672694655502254080)
+    await VoiceChannel.edit(name=ChannelName)
+    #これmuteの表示
+    role = discord.utils.get(message.guild.roles, name='Muted')
+    Mute_count = len(role.members)
+    ChannelName = f'Muted:{str(Mute_count)}'
+    VoiceChannel = client.get_channel(672694696946171914)
+    await VoiceChannel.edit(name=ChannelName)
 client.run(TOKEN)
