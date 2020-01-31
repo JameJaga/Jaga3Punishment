@@ -20,14 +20,12 @@ async def on_message(message):
         embed = discord.Embed(title="Jaga3PunishmentHelp",description="/jpmute {user}で{user}を発言禁止\n/jpkick　{user}で{user}をキック\n/jpban {user}で{user}をBAN",color=discord.Colour.blue())
         embed.add_field(name="**Perdon**",value="/jpunmute {user}で{user}の発言禁止解除\n/jpperdon {user}で{user}のBAN解除。")
         await message.channel.send(embed=embed)
-    
     #Kickコマンド
     elif message.content.startswith('/jpkick'):
         member = message.mentions[0]
         await guild.kick(user=member)
         embed = discord.Embed(title="MemberKicked",description = f'{str(member)}をキックしました。',color=discord.Colour.from_rgb(255, 0, 0))
-        await message.channel.send(embed=embed)
-        
+        await message.channel.send(embed=embed)   
     #muteコマンド
     elif message.content.startswith('/jpmute'):
         member = message.mentions[0]
@@ -35,15 +33,13 @@ async def on_message(message):
         await member.add_roles(role)
         embed = discord.Embed(title="MemberMuted",description = f'{str(member)}をミュートしました。',color=discord.Colour.from_rgb(255, 0, 0))
         await message.channel.send(embed=embed)
-        
     #unmuteコマンド
-    elif message.content.startwith('/jpunmute'):
+    elif message.content.startswith('/jpremute'):
         member = message.mentions[0]
         role = discord.utils.get(message.guild.roles, name='Muted')
         await member.remove_roles(role)
         embed = discord.Embed(title="MemberUnmuted",description = f'{str(member)}のミュートを解除しました。',color=discord.Colour.from_rgb(255, 0, 247))
         await message.channel.send(embed=embed)
-        
     #banコマンド
     elif message.content.startswith('/jpban'):
         member = message.mentions[0]
