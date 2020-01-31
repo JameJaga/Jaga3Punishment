@@ -14,7 +14,7 @@ async def on_ready():
 async def on_message(message):
     guild = client.get_guild(662153006787199046)
     channel = client.get_channel(663570894521761846)
-    Ban_count = len(guild.bans)
+    Ban_count = len(guild.bans())
     if message.author.bot:
         return
     #Helpコマンド
