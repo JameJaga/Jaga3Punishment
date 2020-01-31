@@ -12,9 +12,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    guild = client.get_guild(662153006787199046)
+    guild = message.guild
     channel = client.get_channel(663570894521761846)
-    Ban_count = len(guild.bans())
+    ban_users = await guild.bans()
+    ban_count = len(ban_users)
     if message.author.bot:
         return
     #Helpコマンド
@@ -55,7 +56,7 @@ async def on_message(message):
         await channel.send(embed=embed)
     #処罰中の人数を表示する。
     #これBANの表示
-    ChannelName = f'BANNED:{str(Ban_count)}'
+    ChannelName = f'BANNED:{str(ban_count)}'
     VoiceChannel = client.get_channel(672694655502254080)
     await VoiceChannel.edit(name=ChannelName)
     #これmuteの表示
