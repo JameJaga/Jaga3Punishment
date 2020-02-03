@@ -24,6 +24,7 @@ async def on_message(message):
         embed.add_field(name="**Perdon**",value="/jpunmute {user}で{user}の発言禁止解除\n/jpperdon {user}で{user}のBAN解除。")
         await message.channel.send(embed=embed)
         await channel.send(embed=embed)
+        return
     #Kickコマンド
     elif message.content.startswith('/jpkick'):
         if message.author.guild_permissions.administrator:
