@@ -26,34 +26,50 @@ async def on_message(message):
         await channel.send(embed=embed)
     #Kickコマンド
     elif message.content.startswith('/jpkick'):
-        member = message.mentions[0]
-        await guild.kick(user=member)
-        embed = discord.Embed(title="MemberKicked",description = f'{str(member)}をキックしました。',color=discord.Colour.from_rgb(255, 0, 0))
-        await message.channel.send(embed=embed)
-        await channel.send(embed=embed)
+        if message.author.guild_permissions.administrator:
+            member = message.mentions[0]
+            await guild.kick(user=member)
+            embed = discord.Embed(title="MemberKicked",description = f'{str(member)}をキックしました。',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
+            await channel.send(embed=embed)
+        else:
+            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            await message.channel.send(embed=embed)
     #muteコマンド
     elif message.content.startswith('/jpmute'):
-        member = message.mentions[0]
-        role = discord.utils.get(message.guild.roles, name='Muted')
-        await member.add_roles(role)
-        embed = discord.Embed(title="MemberMuted",description = f'{str(member)}をミュートしました。',color=discord.Colour.from_rgb(255, 0, 0))
-        await message.channel.send(embed=embed)
-        await channel.send(embed=embed)
+        if message.author.guild_permissions.administrator:
+            member = message.mentions[0]
+            role = discord.utils.get(message.guild.roles, name='Muted')
+            await member.add_roles(role)
+            embed = discord.Embed(title="MemberMuted",description = f'{str(member)}をミュートしました。',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
+            await channel.send(embed=embed)
+        else:
+            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            await message.channel.send(embed=embed)
     #unmuteコマンド
     elif message.content.startswith('/jpunmute'):
-        member = message.mentions[0]
-        role = discord.utils.get(message.guild.roles, name='Muted')
-        await member.remove_roles(role)
-        embed = discord.Embed(title="MemberUnmuted",description = f'{str(member)}のミュートを解除しました。',color=discord.Colour.from_rgb(255, 0, 247))
-        await message.channel.send(embed=embed)
-        await channel.send(embed=embed)
+        if message.author.guild_permissions.administrator:
+            member = message.mentions[0]
+            role = discord.utils.get(message.guild.roles, name='Muted')
+            await member.remove_roles(role)
+            embed = discord.Embed(title="MemberUnmuted",description = f'{str(member)}のミュートを解除しました。',color=discord.Colour.from_rgb(255, 0, 247))
+            await message.channel.send(embed=embed)
+            await channel.send(embed=embed)
+        else:
+            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            await message.channel.send(embed=embed)
     #banコマンド
     elif message.content.startswith('/jpban'):
-        member = message.mentions[0]
-        await guild.ban(user=member)
-        embed = discord.Embed(title="MemberBanned",description = f'{str(member)}をBANしました。',color=discord.Colour.from_rgb(255, 0, 0))
-        await message.channel.send(embed=embed)
-        await channel.send(embed=embed)
+        if message.author.guild_permissions.administrator:
+            member = message.mentions[0]
+            await guild.ban(user=member)
+            embed = discord.Embed(title="MemberBanned",description = f'{str(member)}をBANしました。',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
+            await channel.send(embed=embed)
+        else:
+            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            await message.channel.send(embed=embed)
     #処罰中の人数を表示する。
     #これBANの表示
     ChannelName = f'BANNED:{str(ban_count)}'
