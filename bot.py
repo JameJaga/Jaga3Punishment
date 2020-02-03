@@ -33,7 +33,7 @@ async def on_message(message):
             await message.channel.send(embed=embed)
             await channel.send(embed=embed)
         else:
-            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command.',color=discord.Colour.from_rgb(255, 0, 0)
             await message.channel.send(embed=embed)
     #muteコマンド
     elif message.content.startswith('/jpmute'):
@@ -45,7 +45,7 @@ async def on_message(message):
             await message.channel.send(embed=embed)
             await channel.send(embed=embed)
         else:
-            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
             await message.channel.send(embed=embed)
     #unmuteコマンド
     elif message.content.startswith('/jpunmute'):
@@ -57,7 +57,7 @@ async def on_message(message):
             await message.channel.send(embed=embed)
             await channel.send(embed=embed)
         else:
-            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
             await message.channel.send(embed=embed)
     #banコマンド
     elif message.content.startswith('/jpban'):
@@ -68,7 +68,7 @@ async def on_message(message):
             await message.channel.send(embed=embed)
             await channel.send(embed=embed)
         else:
-            embed = discord.Embed(title="MemberUnmuted",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
+            embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0)
             await message.channel.send(embed=embed)
     #処罰中の人数を表示する。
     #これBANの表示
