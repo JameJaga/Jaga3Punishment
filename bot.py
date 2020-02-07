@@ -20,8 +20,8 @@ async def on_message(message):
         return
     #Helpコマンド
     elif message.content.startswith('/jphelp'):
-        embed = discord.Embed(title="Jaga3PunishmentHelp",description="/jpmute {user}で{user}を発言禁止\n/jpkick　{user}で{user}をキック\n/jpban {user}で{user}をBAN",color=discord.Colour.blue())
-        embed.add_field(name="**Perdon**",value="/jpunmute {user}で{user}の発言禁止解除\n/jpperdon {user}で{user}のBAN解除。")
+        embed = discord.Embed(title="Jaga3PunishmentHelp",description="/jpmute {user}で{user}を発言禁止\n/jpfreeze {user}で{user}から閲覧権をはく奪 \n/jpkick　{user}で{user}をキック\n/jpban {user}で{user}をBAN",color=discord.Colour.blue())
+        embed.add_field(name="**Perdon**",value="/jpunmute {user}で{user}の発言禁止解除\n/jpunfreeze {user}で{user}の閲覧権復活\n/jpperdon {user}で{user}のBAN解除。")
         await message.channel.send(embed=embed)
     #Kickコマンド
     elif message.content.startswith('/jpkick'):
@@ -58,6 +58,30 @@ async def on_message(message):
         else:
             embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0))
             await message.channel.send(embed=embed)
+    #Freezeコマンド    
+    elif message.content.startswith('/jpmute'):
+        if message.author.guild_permissions.administrator:
+            member = message.mentions[0]
+            role = discord.utils.get(message.guild.roles, name='Freeze')
+            await member.add_roles(role)
+            embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止しました。。',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
+            await channel.send(embed=embed)
+        else:
+            embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
+     #unfreezeコマンド
+        elif message.content.startswith('/jpmute'):
+        if message.author.guild_permissions.administrator:
+            member = message.mentions[0]
+            role = discord.utils.get(message.guild.roles, name='Freeze')
+            await member.remove_roles(role)
+            embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止を解除しました。。',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
+            await channel.send(embed=embed)
+        else:
+            embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
     #banコマンド
     elif message.content.startswith('/jpban'):
         if message.author.guild_permissions.administrator:
@@ -79,5 +103,11 @@ async def on_message(message):
     Mute_count = len(role.members)
     ChannelName = f'Muted:{str(Mute_count)}'
     VoiceChannel = client.get_channel(672694696946171914)
+    await VoiceChannel.edit(name=ChannelName)
+    #Freezeの表示
+    role = discord.utils.get(message.guild.roles, name='Freeze')
+    Freeze_count = len(role.members)
+    ChannelName = f'Freeze:{str(Freeze_count)}'
+    VoiceChannel = client.get_channel(675239995027619841)
     await VoiceChannel.edit(name=ChannelName)
 client.run(TOKEN)
