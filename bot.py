@@ -62,7 +62,7 @@ async def on_message(message):
     elif message.content.startswith('/jpfreeze'):
         if message.author.guild_permissions.administrator:
             member = message.mentions[0]
-            role = discord.utils.get(message.guild.roles, name='Freeze')
+            role = discord.utils.get(message.guild.roles, name='Freezed')
             await member.add_roles(role)
             embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止しました。。',color=discord.Colour.from_rgb(255, 0, 0))
             await message.channel.send(embed=embed)
@@ -74,7 +74,7 @@ async def on_message(message):
     elif message.content.startswith('/jpunfreeze'):
         if message.author.guild_permissions.administrator:
             member = message.mentions[0]
-            role = discord.utils.get(message.guild.roles, name='Freeze')
+            role = discord.utils.get(message.guild.roles, name='Freezed')
             await member.remove_roles(role)
             embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止を解除しました。。',color=discord.Colour.from_rgb(255, 0, 0))
             await message.channel.send(embed=embed)
@@ -105,9 +105,9 @@ async def on_message(message):
     VoiceChannel = client.get_channel(672694696946171914)
     await VoiceChannel.edit(name=ChannelName)
     #Freezeの表示
-    role = discord.utils.get(message.guild.roles, name='Freeze')
+    role = discord.utils.get(message.guild.roles, name='Freezed')
     Freeze_count = len(role.members)
-    ChannelName = f'Freeze:{str(Freeze_count)}'
+    ChannelName = f'Freezed:{str(Freeze_count)}'
     VoiceChannel = client.get_channel(675239995027619841)
     await VoiceChannel.edit(name=ChannelName)
 client.run(TOKEN)
