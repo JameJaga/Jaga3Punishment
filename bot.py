@@ -76,7 +76,7 @@ async def on_message(message):
             member = message.mentions[0]
             role = discord.utils.get(message.guild.roles, name='Freezed')
             await member.remove_roles(role)
-            embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止を解除しました。。',color=discord.Colour.from_rgb(255, 0, 0))
+            embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止を解除しました。。',color=discord.Colour.from_rgb(255, 0, 247))
             await message.channel.send(embed=embed)
             await channel.send(embed=embed)
         else:
