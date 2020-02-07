@@ -72,13 +72,13 @@ async def on_message(message):
             await message.channel.send(embed=embed)
      #unfreezeコマンド
     elif message.content.startswith('/jpunfreeze'):
-    if message.author.guild_permissions.administrator:
-        member = message.mentions[0]
-        role = discord.utils.get(message.guild.roles, name='Freeze')
-        await member.remove_roles(role)
-        embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止を解除しました。。',color=discord.Colour.from_rgb(255, 0, 0))
-        await message.channel.send(embed=embed)
-        await channel.send(embed=embed)
+        if message.author.guild_permissions.administrator:
+            member = message.mentions[0]
+            role = discord.utils.get(message.guild.roles, name='Freeze')
+            await member.remove_roles(role)
+            embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止を解除しました。。',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
+            await channel.send(embed=embed)
     else:
         embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0))
         await message.channel.send(embed=embed)
