@@ -79,9 +79,9 @@ async def on_message(message):
             embed = discord.Embed(title="MemberMuted",description = f'{str(member)}を閲覧禁止を解除しました。。',color=discord.Colour.from_rgb(255, 0, 0))
             await message.channel.send(embed=embed)
             await channel.send(embed=embed)
-    else:
-        embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0))
-        await message.channel.send(embed=embed)
+        else:
+            embed = discord.Embed(title="AccessDenied",description = 'You do not have permisson to use this command',color=discord.Colour.from_rgb(255, 0, 0))
+            await message.channel.send(embed=embed)
     #banコマンド
     elif message.content.startswith('/jpban'):
         if message.author.guild_permissions.administrator:
